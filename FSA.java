@@ -17,12 +17,12 @@ class DFS {
     static int o[] = new int[1000];
     static int o1 = 0;
     static int n;
-    static void dfs(int v) {
+    static void dfs1(int v) {
         int i;
         used[v] = 1;
         for (i = 0; i < n; i++)
             if (a[v][i] == 1 && used[i] == 0)
-                dfs(i);
+                dfs1(i);
         o[o1] = v;
         o1++;
     }
@@ -31,7 +31,7 @@ class DFS {
         used[v] = 1;
         for (i = 0; i < n; i++)
             if (ax[v][i] == 1 && used[i] == 0)
-                dfs(i);
+                dfs2(i);
     }
     public static int findcomps() {
         int ans = 0;
@@ -39,7 +39,7 @@ class DFS {
             used[i] = 0;
         for (int i = 0; i < n; i++)
             if (used[i] == 0) {
-                dfs(i);
+                dfs1(i);
             }
 
         for (int i = 0; i < n; i++)
@@ -47,23 +47,21 @@ class DFS {
         for (int i = 0; i < n; i++) {
             int z = o[n - 1 - i];
             if (used[z] == 0) {
-                dfs(z);
+                dfs2(z);
                 ans++;
             }
         }
-        //System.out.print(ans);
+        // System.out.print(ans);
         return ans;
     }
     public static int begin(int n1, int a3[][], int a3x[][]) {
         a = a3;
-        ax = a;
+        ax = a3x;
         n = n1;
         int ans;
         ans = findcomps();
         return ans;
     }
-
-
 
 }
 
@@ -156,14 +154,18 @@ public class FSA{
         fin = s.substring(8, s.length() - 1);
         int a3[][] = new int[n1][n1];
         int a3x[][] = new int[n1][n1];
+
+        ArrayList a4[] = new ArrayList[n1];
+        for(int i = 0; i < n1; i++) {
+            for(int j = 0; j < n1; j++) {
+                a4[i] = new ArrayList();
+            }
+        }
+
         s = scan.nextLine();
         z = 7;
         String in ="", tr ="", op ="";
         int q = 0;
-        ArrayList a4[] = new ArrayList[n1];
-        for(int i = 0; i < n1; i++) {
-                a4[i] = new ArrayList();
-        }
         for(int i = 7; i < s.length(); i++) {
             if(s.charAt(i) == ',' || s.charAt(i) == '}') {
 
