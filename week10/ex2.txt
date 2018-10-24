@@ -1,0 +1,2 @@
+/Users/egorpolivcev//week1/file.txt
+/Users/egorpolivcev//Desktop/week10/_ex2.txt
